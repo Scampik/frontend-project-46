@@ -16,12 +16,5 @@ program
   .action((filepath1, filepath2) => {
     genDiff(filepath1, filepath2);
   });
-  //.parse(process.argv);
 
-  program.parse();
-  /*
-  const { args } = program;
-  const options = program.opts();
-  const { lower, upper } = options;
-  
-  command(args, lower, upper); */
+program.parse();
