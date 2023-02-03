@@ -12,7 +12,6 @@ parserOptions:
   sourceType: module
 rules: 
    no-console: 0
-   jest/valid-expect: error
    import/extensions: # FIXME: remove when rule will be adjusted for new nodejs version
     - error
     - ignorePackages
