@@ -8,13 +8,12 @@ const program = new Command();
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .version('nolik')
+  .version('why u need this')
+  .option('-f, --format <type>', 'output format (stylish)', 'stylish')
   .argument('<filepath1>')
   .argument('<filepath2>')
-  .option('-u, --upper', 'output format')
-  .option('-l, --lower', 'output format')
   .action((filepath1, filepath2) => {
-    genDiff(filepath1, filepath2);
+    genDiff(filepath1, filepath2, program.opts().format);
   });
 
 program.parse();
