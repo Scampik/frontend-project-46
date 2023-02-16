@@ -12,3 +12,7 @@ json:
 	gendiff __fixtures__/file1.json  __fixtures__/file2.json
 yml:
 	gendiff __fixtures__/file1.yml  __fixtures__/file2.yml
+plain:
+	gendiff --format plain __fixtures__/file1.json  __fixtures__/file2.json
+
+	
