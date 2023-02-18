@@ -8,6 +8,8 @@ gf:
 	node bin/gendiff.js -h
 test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest
+test-coverage:
+	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
 json:
 	gendiff __fixtures__/file1.json  __fixtures__/file2.json
 yml:

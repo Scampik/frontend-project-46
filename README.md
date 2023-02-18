@@ -4,8 +4,6 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e4d9850a4043891b64bd/test_coverage)](https://codeclimate.com/github/Scampik/frontend-project-46/test_coverage)
 [![lint and test](https://github.com/Scampik/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/Scampik/frontend-project-46/actions/workflows/main.yml)
 
-${{ MAIN_BADGE }}
-
 <strong> Project Diff? </strong>
 
 How To Install? 
