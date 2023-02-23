@@ -4,7 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e4d9850a4043891b64bd/test_coverage)](https://codeclimate.com/github/Scampik/frontend-project-46/test_coverage)
 [![lint and test](https://github.com/Scampik/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/Scampik/frontend-project-46/actions/workflows/main.yml)
 
-Find Differences
+Find Differences!
 ---
 This is a utility for finding differences between two files.<img align="right" src="https://www.repricerexpress.com/wp-content/uploads/2019/07/shutterstock_13308901581.jpg" alt="Girl in a jacket" style="width:150px;height:130px;">
 <ul>
