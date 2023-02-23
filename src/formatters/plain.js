@@ -10,8 +10,8 @@ const getValue = (value) => {
   return value;
 };
 
-const plain = (data, pathKey = '') => {
-  const str = data.filter((child) => child.dif !== 'unchanged')
+const plain = (diff, pathKey = '') => {
+  const str = diff.filter((child) => child.dif !== 'unchanged')
     .map((child) => {
       const { key, value, dif } = child;
       const path = pathKey + key;

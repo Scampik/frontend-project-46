@@ -12,7 +12,7 @@ const readFile = (filepath) => {
     case '.yml':
       return yaml.load(file);
     default:
-      return console.log('takogo formata net');
+      return console.log('wrong format file, use only JSON or YAML');
   }
 };
 

@@ -10,11 +10,13 @@ test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest
 test-coverage:
 	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
-json:
-	gendiff __fixtures__/file1.json  __fixtures__/file2.json
 yml:
 	gendiff __fixtures__/file1.yml  __fixtures__/file2.yml
-plain:
+pl:
 	gendiff --format plain __fixtures__/file1.json  __fixtures__/file2.json
+js:
+	gendiff --format json __fixtures__/file1.json  __fixtures__/file2.json
+st:
+	gendiff __fixtures__/file1.json  __fixtures__/file2.json
 
 	

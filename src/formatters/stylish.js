@@ -20,12 +20,12 @@ const stringify = (value, depth, spacesCount = 1) => {
   ].join('\n');
 };
 
-const stylish = (data, depth = 1, spacesCount = 1) => {
+const stylish = (diff, depth = 1, spacesCount = 1) => {
   const replacer = '  ';
   const indentSize = depth * spacesCount;
   const currentIndent = replacer.repeat(indentSize);
   const bracketIndent = replacer.repeat(indentSize - spacesCount);
-  const str = data.map((key) => {
+  const str = diff.map((key) => {
     // console.log(key);
     switch (key.dif) {
       case 'obj':
