@@ -9,7 +9,12 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 test('notCauseError', () => {
-  expect(() => JSON.parse(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json'))).not.toThrow();
+  const data = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json');
+  expect(() => JSON.parse(data)).not.toThrow();
+});
+
+test('testDefaulthFormat', () => {
+  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(readFile('expectStylish.txt'));
 });
 
 test.each([
@@ -17,7 +22,7 @@ test.each([
   ['file1.json', 'file2.json', 'plain', 'expectPlain.txt'],
   ['file1.yml', 'file2.yml', 'stylish', 'expectStylish.txt'],
   ['file1.yml', 'file2.yml', 'plain', 'expectPlain.txt'],
-])('test(%s, %s)', (file1, file2, format, expectFile) => {
+])('test(%s, %s, %s)', (file1, file2, format, expectFile) => {
   const data = genDiff(getFixturePath(file1), getFixturePath(file2), format);
   expect(data).toEqual(readFile(expectFile));
 });
