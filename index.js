@@ -1,6 +1,6 @@
-import findDiff from './difference.js';
-import readFile from './parsers.js';
-import getFormatter from './formatters/index.js';
+import findDiff from './src/difference.js';
+import readFile from './src/parsers.js';
+import getFormatter from './src/formatters/index.js';
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const file1 = readFile(filepath1);
