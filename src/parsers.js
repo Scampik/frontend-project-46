@@ -1,19 +1,14 @@
-import path from 'path';
-import fs from 'fs';
 import yaml from 'js-yaml';
 
-const getPath = (filepath) => path.resolve(process.cwd(), filepath);
-const readFile = (filepath) => {
-  const file = fs.readFileSync(getPath(filepath));
-  const format = path.extname(filepath);
+const getParse = (fileData, format) => {
   switch (format) {
     case '.json':
-      return JSON.parse(file);
+      return JSON.parse(fileData);
     case '.yml':
-      return yaml.load(file);
+      return yaml.load(fileData);
     default:
-      return console.log('wrong format file, use only JSON or YAML');
+      throw new Error('wrong format file, use only JSON or YAML');
   }
 };
 
-export default readFile;
+export default getParse;

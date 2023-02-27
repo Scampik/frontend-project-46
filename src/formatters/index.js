@@ -11,7 +11,7 @@ const getFormatter = (diff, format) => {
     case 'json':
       return json(diff);
     default:
-      return 'check help "gendiff -h" and choose correct "format"';
+      throw new Error('check help "gendiff -h" and choose correct "format"');
   }
 };
 
