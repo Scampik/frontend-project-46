@@ -39,7 +39,7 @@ const stylish = (diff, depth = 1, spacesCount = 0) => {
       case 'unchanged':
         return `${currentIndent}  ${key.key}: ${stringify(key.value, depth + 1)}`;
       default:
-         throw new Error('Error?');
+        throw new Error('Error?');
     }
   });
   const result = [
