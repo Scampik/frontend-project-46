@@ -7,7 +7,7 @@ const getParse = (fileData, format) => {
     case '.yml':
       return yaml.load(fileData);
     default:
-      throw new Error('wrong format file, use only JSON or YAML');
+      throw new Error(`\x1b[33mwrong format file '${format}', use  only JSON or YAML\x1b[0m`);
   }
 };
 

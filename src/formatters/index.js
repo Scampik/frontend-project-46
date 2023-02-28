@@ -11,7 +11,7 @@ const getFormatter = (diff, format) => {
     case 'json':
       return json(diff);
     default:
-      throw new Error('check help "gendiff -h" and choose correct "format"');
+      throw new Error(`\x1b[33mwrong format '${format}', check help "gendiff -h" and choose correct "format"\x1b[0m`);
   }
 };
 
