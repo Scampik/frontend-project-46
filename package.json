@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "This is a utility for finding differences between two files.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "npx jest"
   },

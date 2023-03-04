@@ -7,28 +7,25 @@ const stringify = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return value;
+  return `${value}`;
 };
 
-const plain = (diff, pathKey = '') => {
+const plain = (diff, path = []) => {
   const str = diff
-    .filter((child) => child.dif !== 'unchanged')
-    .map((child) => {
-      const { key, value, dif } = child;
-      const path = [pathKey, key].join('');
-      switch (dif) {
+    .filter((child) => child.type !== 'unchanged')
+    .map((node) => {
+      const pathKey = [path, node.key].join('');
+      switch (node.type) {
         case 'obj':
-          return `${plain(child.children, `${path}.`)}`;
+          return `${plain(node.children, `${pathKey}.`)}`;
         case 'added':
-          return `Property '${path}' was added with value: ${stringify(value)}`;
+          return `Property '${pathKey}' was added with value: ${stringify(node.value)}`;
         case 'deleted':
-          return `Property '${path}' was removed`;
+          return `Property '${pathKey}' was removed`;
         case 'changed':
-          return `Property '${path}' was updated. From ${stringify(child.value1)} to ${stringify(child.value2)}`;
-        case 'unchanged':
-          return '';
+          return `Property '${pathKey}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
         default:
-          throw new Error('ERROR');
+          throw new Error(`Wrong type ${node.type}`);
       }
     });
   const result = [...str].join('\n');

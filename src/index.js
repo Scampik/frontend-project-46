@@ -8,11 +8,11 @@ const getPath = (filepath) => path.resolve(process.cwd(), filepath);
 
 const getData = (filepath) => fs.readFileSync(getPath(filepath));
 
-const getFormat = (filepath) => path.extname(filepath);
+const getExtension = (filepath) => path.extname(filepath).slice(1);
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const file1 = getParse(getData(filepath1), getFormat(filepath1));
-  const file2 = getParse(getData(filepath2), getFormat(filepath2));
+  const file1 = getParse(getData(filepath1), getExtension(filepath1));
+  const file2 = getParse(getData(filepath2), getExtension(filepath2));
   const difference = findDiff(file1, file2);
   return getFormatter(difference, format);
 };

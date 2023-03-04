@@ -1,17 +1,23 @@
 import _ from 'lodash';
 
-const stringify = (value, depth, spacesCount = 4) => {
-  const replacer = ' ';
+const getIndent = (depth) => {
+  const replacer = '  ';
+  const spacesCount = 2;
   const indentSize = depth * spacesCount;
-  const currentIndent = replacer.repeat(indentSize);
+  const currentIndent = replacer.repeat(indentSize - 1);
   const bracketIndent = replacer.repeat(indentSize - spacesCount);
+  return [currentIndent, bracketIndent];
+};
+
+const stringify = (value, depth) => {
+  const [currentIndent, bracketIndent] = getIndent(depth);
   if (!_.isObject(value) || value === null) {
     return `${value}`;
   }
 
   const lines = Object
     .entries(value)
-    .map(([key, val]) => `${currentIndent}${key}: ${stringify(val, depth + 1)}`);
+    .map(([key, val]) => `${currentIndent}  ${key}: ${stringify(val, depth + 1)}`);
 
   return [
     '{',
@@ -20,26 +26,23 @@ const stringify = (value, depth, spacesCount = 4) => {
   ].join('\n');
 };
 
-const stylish = (diff, depth = 1, spacesCount = 0) => {
-  const replacer = '  ';
-  const indentSize = depth + spacesCount;
-  const currentIndent = replacer.repeat(indentSize);
-  const bracketIndent = replacer.repeat(indentSize - 1);
+const stylish = (diff, depth = 1) => {
+  const [currentIndent, bracketIndent] = getIndent(depth);
   const str = diff.map((key) => {
-    // console.log(key);
-    switch (key.dif) {
+    switch (key.type) {
       case 'obj':
-        return `${currentIndent}  ${key.key}: ${stylish(key.children, depth + 1, spacesCount + 1)}`;
+        return `${currentIndent}  ${key.key}: ${stylish(key.children, depth + 1)}`;
       case 'added':
         return `${currentIndent}+ ${key.key}: ${stringify(key.value, depth + 1)}`;
       case 'deleted':
         return `${currentIndent}- ${key.key}: ${stringify(key.value, depth + 1)}`;
       case 'changed':
-        return `${currentIndent}- ${key.key}: ${stringify(key.value1, depth + 1)}\n${currentIndent}+ ${key.key}: ${stringify(key.value2, depth + 1)}`;
+        return (`${currentIndent}- ${key.key}: ${stringify(key.value1, depth + 1)}`
+            + `\n${currentIndent}+ ${key.key}: ${stringify(key.value2, depth + 1)}`);
       case 'unchanged':
         return `${currentIndent}  ${key.key}: ${stringify(key.value, depth + 1)}`;
       default:
-        throw new Error('Error?');
+        throw new Error(`Wrong type ${key.type}`);
     }
   });
   const result = [
