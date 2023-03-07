@@ -12,7 +12,7 @@ const getIndent = (depth) => {
 const stringify = (value, depth) => {
   const [currentIndent, bracketIndent] = getIndent(depth);
   if (!_.isObject(value) || value === null) {
-    return `${value}`;
+    return String(value);
   }
 
   const lines = Object
@@ -37,8 +37,8 @@ const stylish = (diff, depth = 1) => {
       case 'deleted':
         return `${currentIndent}- ${key.key}: ${stringify(key.value, depth + 1)}`;
       case 'changed':
-        return (`${currentIndent}- ${key.key}: ${stringify(key.value1, depth + 1)}`
-            + `\n${currentIndent}+ ${key.key}: ${stringify(key.value2, depth + 1)}`);
+        return [`${currentIndent}- ${key.key}: ${stringify(key.value1, depth + 1)}`,
+          `\n${currentIndent}+ ${key.key}: ${stringify(key.value2, depth + 1)}`].join('');
       case 'unchanged':
         return `${currentIndent}  ${key.key}: ${stringify(key.value, depth + 1)}`;
       default:

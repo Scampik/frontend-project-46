@@ -15,7 +15,7 @@ yml:
 pl:
 	gendiff --format plain __fixtures__/file1.json  __fixtures__/file2.json
 js:
-	gendiff --format json __fixtures__/file1.json  __fixtures__/file2.json
+	gendiff --format jsonr __fixtures__/file1.json  __fixtures__/file2.json
 st:
 	gendiff __fixtures__/file1.json  __fixtures__/file2.json
 

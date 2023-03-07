@@ -7,7 +7,7 @@ const stringify = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return `${value}`;
+  return String(value);
 };
 
 const plain = (diff, path = []) => {
